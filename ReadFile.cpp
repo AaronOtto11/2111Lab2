@@ -1,29 +1,28 @@
 #include "ReadFile.h"
 #include <iostream>
 #include <string>
+#include "Text.h"
 
-Readfile::ReadFile(const char* file_name)
+ReadFile::ReadFile(const char* file_name)
 {
    
 
-   rf-input_file.open(file_name);
+   input_file.open(file_name);
    closed = false;
-	_eof = false;
-
-  
+	_eof = false; 
 }
 
-Readfile::~ReadFile()
+ReadFile::~ReadFile()
 {
    close();
 }
 
-Readfile::bool eof()
+bool ReadFile::eof()
 {
    return _eof;
 }
 
-void Readfile:: close()
+void ReadFile:: close()
 {
    if (!closed)
    {
@@ -32,14 +31,14 @@ void Readfile:: close()
    }
 }
 
-String* Readfile::readLine()
+String* ReadFile::readLine()
 {
    if (closed) return NULL;
    if (_eof) return NULL;
 
    string text;
    _eof = !(getline(input_file, text));
-
-   String* str = new String((const char*) text.c_str());
+   
+   String* str = new String(text.c_str());
    return str;
 }
