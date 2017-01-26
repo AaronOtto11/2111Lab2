@@ -23,7 +23,7 @@ Readfile::bool eof()
    return _eof;
 }
 
-Readfile::void close()
+void Readfile:: close()
 {
    if (!closed)
    {
@@ -32,7 +32,7 @@ Readfile::void close()
    }
 }
 
-Readfile::String* readLine()
+String* Readfile::readLine()
 {
    if (closed) return NULL;
    if (_eof) return NULL;
