@@ -2,44 +2,43 @@
 #include <iostream>
 #include <string>
 
-ReadFile* createReadFile(const char* file_name)
+Readfile::ReadFile(const char* file_name)
 {
-   ReadFile* rf = new ReadFile;
+   
 
-   rf->input_file.open(file_name);
-   rf->closed = false;
-   rf->_eof = false;
+   rf-input_file.open(file_name);
+   closed = false;
+	_eof = false;
 
-   return rf;
+  
 }
 
-void destroyReadFile(ReadFile* rf)
+Readfile::~ReadFile()
 {
-   close(rf);
-   delete rf;
+   close();
 }
 
-bool eof(ReadFile* rf)
+Readfile::bool eof()
 {
-   return rf->_eof;
+   return _eof;
 }
 
-void close(ReadFile* rf)
+Readfile::void close()
 {
-   if (!rf->closed)
+   if (!closed)
    {
-      rf->input_file.close();
-      rf->closed = true;
+      input_file.close();
+      closed = true;
    }
 }
 
-String* readLine(ReadFile* rf)
+Readfile::String* readLine()
 {
-   if (rf->closed) return NULL;
-   if (rf->_eof) return NULL;
+   if (closed) return NULL;
+   if (_eof) return NULL;
 
    string text;
-   rf->_eof = !(getline(rf->input_file, text));
+   _eof = !(getline(input_file, text));
 
    String* str = new String((const char*) text.c_str());
    return str;
